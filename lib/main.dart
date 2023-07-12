@@ -24,25 +24,25 @@ class MyApp extends StatelessWidget {
       if (snapshot.hasError) {
         return ErrorScreen();
       }
-      return GetMaterialApp(
-        title: "IT Modeler",
-        initialRoute: Routes.HOME,
-        getPages: AppPages.routes,
-      );
-      // return FutureBuilder(
-      //   future: Future.delayed(Duration(seconds: 3)),
-      //   builder: (context, snapshot) {
-      //     if (snapshot.connectionState == ConnectionState.done) {
-      //       return GetMaterialApp(
-      //         title: "IT Modeler",
-      //         initialRoute:
-      //             authC.isSkipIntro.isTrue ? Routes.HOME : Routes.LOGIN,
-      //         getPages: AppPages.routes,
-      //       );
-      //     }
-      //     return SplasScreen();
-      //   },
+      // return GetMaterialApp(
+      //   title: "IT Modeler",
+      //   initialRoute: Routes.PROFILE,
+      //   getPages: AppPages.routes,
       // );
+      return FutureBuilder(
+        future: Future.delayed(Duration(seconds: 3)),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return GetMaterialApp(
+              title: "IT Modeler",
+              initialRoute:
+                  authC.isSkipIntro.isTrue ? Routes.HOME : Routes.LOGIN,
+              getPages: AppPages.routes,
+            );
+          }
+          return SplasScreen();
+        },
+      );
     });
   }
 }

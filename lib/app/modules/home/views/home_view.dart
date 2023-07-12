@@ -180,17 +180,17 @@ class HomeView extends GetView<HomeController> {
                                   icon: "beranda",
                                   status: true,
                                   title: "Beranda",
-                                  kePage: "HOME"),
+                                  kePage: "/home"),
                               ItemNav(
                                   icon: "riwayat",
                                   status: true,
                                   title: "Riwayat Checklist",
-                                  kePage: "RIWAYAT"),
+                                  kePage: "/riwayat"),
                               ItemNav(
                                   icon: "profile",
                                   status: true,
                                   title: "Profile",
-                                  kePage: "HOME"),
+                                  kePage: "/profile"),
                             ],
                           ),
                         )
@@ -257,26 +257,29 @@ class CheckLIstKatagori extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: 50,
-          height: 50,
-          child: Image.asset(
-            icon,
-            fit: BoxFit.cover,
+    return GestureDetector(
+      onTap: () => Get.toNamed(Routes.PROFILE),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 50,
+            height: 50,
+            child: Image.asset(
+              icon,
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-        SizedBox(height: 5),
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 16,
+          SizedBox(height: 5),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -298,7 +301,7 @@ class ItemNav extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => Get.toNamed('/home'),
+      onTap: () => Get.toNamed(kePage),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
