@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 import 'package:get/get.dart';
 
@@ -8,8 +11,10 @@ import '../controllers/profile_controller.dart';
 class ProfileView extends GetView<ProfileController> {
   ProfileView({Key? key}) : super(key: key);
   // final dataP =  await getProfile();
-  Future _getThingsOnStartup() async {
-    await Future.delayed(Duration(seconds: 2));
+  fetchData() async {
+    var result = await http.get(Uri.parse("https://reqres.in/api/users/2"));
+    print(result);
+    //return json.decode(result.body)['data'];
   }
 
   @override

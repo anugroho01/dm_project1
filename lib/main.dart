@@ -20,29 +20,32 @@ class MyApp extends StatelessWidget {
   final authC = Get.put(AuthController(), permanent: true);
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(builder: (context, snapshot) {
-      if (snapshot.hasError) {
-        return ErrorScreen();
-      }
-      // return GetMaterialApp(
-      //   title: "IT Modeler",
-      //   initialRoute: Routes.PROFILE,
-      //   getPages: AppPages.routes,
-      // );
-      return FutureBuilder(
-        future: Future.delayed(Duration(seconds: 3)),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.done) {
-            return GetMaterialApp(
-              title: "IT Modeler",
-              initialRoute:
-                  authC.isSkipIntro.isTrue ? Routes.HOME : Routes.LOGIN,
-              getPages: AppPages.routes,
-            );
-          }
-          return SplasScreen();
-        },
-      );
-    });
+    return FutureBuilder(
+      builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return ErrorScreen();
+        }
+        return GetMaterialApp(
+          title: "IT Modeler",
+          initialRoute: Routes.HOME,
+          getPages: AppPages.routes,
+        );
+        // return FutureBuilder(
+        //   future: Future.delayed(Duration(seconds: 3)),
+        //   builder: (context, snapshot) {
+        //     if (snapshot.connectionState == ConnectionState.done) {
+        //       return GetMaterialApp(
+        //         title: "IT Modeler",
+        //         initialRoute:
+        //             authC.isSkipIntro.isTrue ? Routes.HOME : Routes.LOGIN,
+        //         getPages: AppPages.routes,
+        //       );
+        //     }
+        //     return SplasScreen();
+        //   },
+        // );
+      },
+      future: null,
+    );
   }
 }
